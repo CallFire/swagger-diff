@@ -1,8 +1,13 @@
 package com.deepoove.swagger.diff.cli;
 
+import java.util.List;
+
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.deepoove.swagger.diff.SwaggerDiff;
+import com.deepoove.swagger.diff.model.ChangedEndpoint;
+import com.deepoove.swagger.diff.model.ChangedOperation;
+import com.deepoove.swagger.diff.model.ChangedParameter;
 import com.deepoove.swagger.diff.output.HtmlRender;
 import com.deepoove.swagger.diff.output.MarkdownRender;
 import com.deepoove.swagger.diff.output.Render;
@@ -68,9 +73,40 @@ public class CLI {
         
         String render = getRender(outputMode).render(diff);
         JCommander.getConsole().println(render);
+        int changedEndpoints = diff.getChangedEndpoints().size();
+        int missingEndpoints = diff.getMissingEndpoints().size();
+        int changedParameters = countParameters(diff.getChangedEndpoints());
+        int changedProperties = countProperties(diff.getChangedEndpoints());
+        JCommander.getConsole().println("Changed endpoints: " + changedEndpoints + ",\n"
+                + "missing endpoints: " + missingEndpoints + ",\n"
+                + "changed parameters: " + changedParameters + ",\n"
+                + "changed properties: " + changedProperties);
         if (strictMode && (!diff.getChangedEndpoints().isEmpty() || !diff.getMissingEndpoints().isEmpty())) {
             throw new IllegalStateException("Swagger differences were found, please refer to console logs and fix it.");
         }
+    }
+
+    private int countParameters(List<ChangedEndpoint> changedEndpoints) {
+        int count = 0;
+        for (ChangedEndpoint endpoint : changedEndpoints) {
+            for (ChangedOperation operation : endpoint.getChangedOperations().values()) {
+                count += operation.getAddParameters().size() + operation.getMissingParameters().size();
+                for (ChangedParameter parameter : operation.getChangedParameter()) {
+                    count += parameter.getIncreased().size() + parameter.getMissing().size() + parameter.getChanged().size();
+                }
+            }
+        }
+        return count;
+    }
+
+    private int countProperties(List<ChangedEndpoint> changedEndpoints) {
+        int count = 0;
+        for (ChangedEndpoint endpoint : changedEndpoints) {
+            for (ChangedOperation operation : endpoint.getChangedOperations().values()) {
+                count += operation.getAddProps().size() + operation.getChangedProps().size() + operation.getMissingProps().size();
+            }
+        }
+        return count;
     }
 
     private Render getRender(String outputMode) {
