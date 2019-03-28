@@ -1,5 +1,7 @@
 package com.deepoove.swagger;
 
+import static io.swagger.models.HttpMethod.GET;
+import static io.swagger.models.HttpMethod.POST;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import static org.apache.commons.io.FileUtils.writeLines;
@@ -40,7 +42,7 @@ public class SwaggerDiffReaderTest {
         SwaggerModel swagger = swaggerDiffReader.read(file);
         assertEquals(2, swagger.items.size());
         Method creditCard = swagger.items.get(0);
-        assertEquals("GET", creditCard.method);
+        assertEquals(GET, creditCard.method);
         assertEquals("/credit-card/view-list", creditCard.path);
         assertEquals(0, creditCard.parameters.size());
         assertEquals(3, creditCard.response.size());
@@ -49,7 +51,7 @@ public class SwaggerDiffReaderTest {
         assertTrue(creditCard.response.contains("entities.id"));
 
         Method billing = swagger.items.get(1);
-        assertEquals("POST", billing.method);
+        assertEquals(POST, billing.method);
         assertEquals("/billing/buy-credits", billing.path);
         assertEquals(1, billing.parameters.size());
         assertTrue(billing.parameters.contains("creditCardId"));
