@@ -1,0 +1,5 @@
+# create jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`POST` /billing/buy-credits buy credits with existing credit card
+     Parameters
+
+         Modify creditCardId

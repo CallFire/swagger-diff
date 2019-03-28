@@ -1,13 +1,18 @@
 package com.deepoove.swagger.diff.cli;
 
+import static com.google.common.collect.Iterables.isEmpty;
+
+import java.io.File;
 import java.util.List;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.deepoove.swagger.diff.SwaggerDiff;
+import com.deepoove.swagger.diff.SwaggerDiffReader;
 import com.deepoove.swagger.diff.model.ChangedEndpoint;
 import com.deepoove.swagger.diff.model.ChangedOperation;
 import com.deepoove.swagger.diff.model.ChangedParameter;
+import com.deepoove.swagger.diff.model.SwaggerModel;
 import com.deepoove.swagger.diff.output.HtmlRender;
 import com.deepoove.swagger.diff.output.MarkdownRender;
 import com.deepoove.swagger.diff.output.Render;
@@ -44,6 +49,9 @@ public class CLI {
 
     @Parameter(names = "--strict-mode", description = "Strict mode, exception is thrown if diff found")
     private boolean strictMode = false;
+
+    @Parameter(names = "--ignore-file", description = "File with properties to ignore")
+    private String ignoreFilePath;
     
     @Parameter(names = "--version", description = "swagger-diff tool version", help = true, order = 6)
     private boolean v;
@@ -70,6 +78,11 @@ public class CLI {
         
         SwaggerDiff diff = SwaggerDiff.SWAGGER_VERSION_V2.equals(version)
                 ? SwaggerDiff.compareV2(oldSpec, newSpec) : SwaggerDiff.compareV1(oldSpec, newSpec);
+
+        if (ignoreFilePath != null) {
+            SwaggerModel ignore = new SwaggerDiffReader().read(new File(ignoreFilePath));
+            processIgnore(diff, ignore);
+        }
         
         String render = getRender(outputMode).render(diff);
         JCommander.getConsole().println(render);
@@ -83,6 +96,41 @@ public class CLI {
                 + "changed properties: " + changedProperties);
         if (strictMode && (!diff.getChangedEndpoints().isEmpty() || !diff.getMissingEndpoints().isEmpty())) {
             throw new IllegalStateException("Swagger differences were found, please refer to console logs and fix it.");
+        }
+    }
+
+    private void processIgnore(SwaggerDiff diff, SwaggerModel ignore) {
+        for (ChangedEndpoint endpoint : diff.getChangedEndpoints()) {
+            SwaggerModel.Method toIgnore = ignore.getByPath(endpoint.getPathUrl());
+            if (toIgnore == null) continue;
+
+            ChangedOperation operation = endpoint.getChangedOperations().get(toIgnore.method);
+            if (operation == null) continue;
+
+            for (ChangedParameter param : operation.getChangedParameter()) {
+                param.getIncreased().removeIf(prop -> toIgnore.parameters.contains(prop.getEl()));
+                param.getChanged().removeIf(prop -> toIgnore.parameters.contains(prop.getEl()));
+                param.getMissing().removeIf(prop -> toIgnore.parameters.contains(prop.getEl()));
+            }
+            operation.getChangedParameter().removeIf(param -> isEmpty(param.getMissing())
+                    && isEmpty(param.getIncreased())
+                    && isEmpty(param.getChanged())
+                    && isEmpty(param.getChanged())
+                    && !param.isChangeRequired());
+            operation.getMissingParameters().removeIf(parameter -> toIgnore.parameters.contains(parameter.getName()));
+
+            operation.getAddProps().removeIf(prop -> toIgnore.response.contains(prop.getEl()));
+            operation.getMissingProps().removeIf(prop -> toIgnore.response.contains(prop.getEl()));
+            operation.getChangedProps().removeIf(prop -> toIgnore.response.contains(prop.getEl()));
+
+            if (isEmpty(operation.getAddParameters())
+                    && isEmpty(operation.getMissingParameters())
+                    && isEmpty(operation.getChangedParameter())
+                    && isEmpty(operation.getAddProps())
+                    && isEmpty(operation.getMissingProps())
+                    && isEmpty(operation.getChangedProps())) {
+                endpoint.getChangedOperations().remove(toIgnore.method);
+            }
         }
     }
 
