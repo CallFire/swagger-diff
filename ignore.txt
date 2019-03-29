@@ -1,3 +1,48 @@
+#### ----------------
+#### BELOW ARE FIXES MUTED, AND should be reviewed soon, don't add without a jira to ez
+#### ----------------
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`POST` /credit-card/add add new Credit Card
+    Parameters
+
+        Insert saveAsNew
+    Return Type
+
+        Insert id
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`POST` /contact/add add new Contact
+    Parameters
+
+        Modify phoneNumber //Phone number
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`POST` /credit-card/add add new Credit Card
+    Parameters
+
+        Insert stateId
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`POST` /did/local/purchase-new-card Buy local did with new credit card
+    Parameters
+
+        Modify creditCard.stateId
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
+    Return Type
+
+        Delete entities.messageType
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`POST` /keyword/purchase-new-card Buy keyword did with new credit card
+    Parameters
+
+        Modify creditCard.stateId
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`GET` /reminder/view-list view list of reminders
+    Return Type
+
+        Insert total
+#### ----------------
+#### OTHER ENDPOINTS ON PERMANENT BASIS
+#### ----------------
+
 `GET` /reminder/view/{id} view reminder
     Return Type
 
@@ -24,6 +69,10 @@
         Insert createdAt
         Insert updatedAt
         Insert userDidsId
+`GET` /reminder/view-list view list of reminders
+    Return Type
+
+        Insert entities.needToChangeCode
 `PUT` /contact/edit/{id} edit contact
     Parameters
 
@@ -37,10 +86,6 @@
     Parameters
 
         Insert contactsCount
-        Insert id
-`PUT` /did/conversation/message/edit/{id} edit conversation message
-    Parameters
-
         Insert id
 `PUT` /did/conversation/message/edit/{id} edit conversation message
     Parameters
@@ -189,15 +234,6 @@
      Parameters
 
          Insert id
-
-# create jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /credit-card/add add new Credit Card
-    Parameters
-
-        Insert saveAsNew
-    Return Type
-
-        Insert id
 
 `GET` /dictionary/timezone/view-list TimeZones list
     Return Type
