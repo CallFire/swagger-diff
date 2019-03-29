@@ -35,6 +35,41 @@
     Return Type
 
         Insert total
+
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`GET` /layout/main-menu retrieve main menu structure
+    Return Type
+
+        Insert isFeedbackEnabled
+        Insert messaging
+        Insert children.children
+        Insert children.isFeedbackEnabled
+        Insert children.messaging
+
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`POST` /guided-tour-logs post Guided Tour action
+    Parameters
+
+        Insert action
+
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19904
+`POST` /poster/add add poster
+    Parameters
+
+        Insert data
+        Delete brand
+        Delete template
+        Delete keyword
+        Delete code
+        Delete incentive
+        Delete bgColor
+        Delete textColor
+        Delete subColor
+        Delete bgImage
+        Delete imageFullWidth
+        Delete imageWidth
+        Delete imageFullHeight
+        Delete displacement
 #### ----------------
 #### OTHER ENDPOINTS ON PERMANENT BASIS
 #### ----------------
@@ -248,6 +283,11 @@
         Insert id
 
 `PUT` /inbox/folder/edit/{id} edit inbox folder
+    Parameters
+
+        Insert id
+
+`PUT` /poll/edit/{id} edit poll
     Parameters
 
         Insert id
