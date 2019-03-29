@@ -52,12 +52,14 @@
         Insert id
         Insert createdAt
         Insert updatedAt
+        Insert file
 `PUT` /drip-campaigns/message/edit/{id} update Drip Message
     Parameters
 
         Insert id
         Insert createdAt
         Insert updatedAt
+        Insert file
 `POST` /drip-campaigns/message/delete Delete drip campaign message
     Parameters
 
@@ -71,6 +73,7 @@
         Insert dayAfterJoining
         Insert createdAt
         Insert updatedAt
+        Insert file
 `GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
     Return Type
 
