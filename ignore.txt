@@ -3,3 +3,18 @@
      Parameters
 
          Modify creditCardId
+         Delete creditCard.stateId
+
+`PUT` /credit-card/edit/{id} edit credit card
+     Parameters
+
+         Insert id
+
+# create jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+`POST` /credit-card/add add new Credit Card
+    Parameters
+
+        Insert saveAsNew
+    Return Type
+
+        Insert id
