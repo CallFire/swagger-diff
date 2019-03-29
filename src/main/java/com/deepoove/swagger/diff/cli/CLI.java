@@ -5,6 +5,9 @@ import static com.google.common.collect.Iterables.isEmpty;
 import java.io.File;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.deepoove.swagger.diff.SwaggerDiff;
@@ -27,7 +30,8 @@ import com.deepoove.swagger.diff.output.Render;
  * @version 
  */
 public class CLI {
-    
+
+    private static Logger logger = LoggerFactory.getLogger(CLI.class);
     private static final String OUTPUT_MODE_MARKDOWN = "markdown";
     
     @Parameter(names = "-old", description = "old api-doc location:Json file path or Http url", required = true, order = 0)
@@ -100,28 +104,41 @@ public class CLI {
     }
 
     private void processIgnore(SwaggerDiff diff, SwaggerModel ignore) {
-        for (ChangedEndpoint endpoint : diff.getChangedEndpoints()) {
-            SwaggerModel.Method toIgnore = ignore.getByPath(endpoint.getPathUrl());
-            if (toIgnore == null) continue;
+        for (SwaggerModel.Method toIgnore : ignore.items) {
+            ChangedEndpoint endpoint = diff.getChangedEndpoints().stream().filter(e -> e.getPathUrl().equals(toIgnore.path)).findFirst().orElse(null);
+            if (endpoint == null) {
+                logger.error("to ignore endpoint wasn't found: " + toIgnore);
+                continue;
+            }
 
             ChangedOperation operation = endpoint.getChangedOperations().get(toIgnore.method);
-            if (operation == null) continue;
+            if (operation == null) {
+                logger.error("to ignore operation wasn't found: " + toIgnore);
+                continue;
+            }
 
             for (ChangedParameter param : operation.getChangedParameter()) {
-                param.getIncreased().removeIf(prop -> toIgnore.parameters.contains(prop.getEl()));
-                param.getChanged().removeIf(prop -> toIgnore.parameters.contains(prop.getEl()));
-                param.getMissing().removeIf(prop -> toIgnore.parameters.contains(prop.getEl()));
+                param.getIncreased().removeIf(prop -> toIgnore.parameters.remove(prop.getEl()));
+                param.getChanged().removeIf(prop -> toIgnore.parameters.remove(prop.getEl()));
+                param.getMissing().removeIf(prop -> toIgnore.parameters.remove(prop.getEl()));
             }
             operation.getChangedParameter().removeIf(param -> isEmpty(param.getMissing())
                     && isEmpty(param.getIncreased())
                     && isEmpty(param.getChanged())
                     && isEmpty(param.getChanged())
                     && !param.isChangeRequired());
-            operation.getMissingParameters().removeIf(parameter -> toIgnore.parameters.contains(parameter.getName()));
+            operation.getMissingParameters().removeIf(parameter -> toIgnore.parameters.remove(parameter.getName()));
 
-            operation.getAddProps().removeIf(prop -> toIgnore.response.contains(prop.getEl()));
-            operation.getMissingProps().removeIf(prop -> toIgnore.response.contains(prop.getEl()));
-            operation.getChangedProps().removeIf(prop -> toIgnore.response.contains(prop.getEl()));
+            operation.getAddProps().removeIf(prop -> toIgnore.response.remove(prop.getEl()));
+            operation.getMissingProps().removeIf(prop -> toIgnore.response.remove(prop.getEl()));
+            operation.getChangedProps().removeIf(prop -> toIgnore.response.remove(prop.getEl()));
+
+            if (!toIgnore.parameters.isEmpty()) {
+                logger.error("not all params were ignored: " + toIgnore);
+            }
+            if (!toIgnore.response.isEmpty()) {
+                logger.error("not all properties were ignored: " + toIgnore);
+            }
 
             if (isEmpty(operation.getAddParameters())
                     && isEmpty(operation.getMissingParameters())

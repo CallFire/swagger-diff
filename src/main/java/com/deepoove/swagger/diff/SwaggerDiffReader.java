@@ -61,10 +61,12 @@ public class SwaggerDiffReader {
 
             if (PARAMETERS.equals(line)) {
                 parametersBlock = true;
+                responseBlock = false;
                 continue;
             }
             if (RESPONSE.equals(line)) {
                 responseBlock = true;
+                parametersBlock = false;
                 continue;
             }
 

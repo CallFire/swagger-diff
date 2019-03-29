@@ -14,11 +14,7 @@
     Parameters
 
         Modify phoneNumber //Phone number
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /credit-card/add add new Credit Card
-    Parameters
 
-        Insert stateId
 # created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
 `POST` /did/local/purchase-new-card Buy local did with new credit card
     Parameters
