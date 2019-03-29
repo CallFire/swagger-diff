@@ -1,3 +1,180 @@
+`GET` /reminder/view/{id} view reminder
+    Return Type
+
+        Insert needToChangeCode
+`GET` /reminder/message/view-list/{reminderId} view reminder messages
+    Return Type
+
+        Delete entities.createdAt
+        Delete entities.updatedAt
+`PUT` /reminder/edit/{id} edit reminder by id
+    Parameters
+
+        Insert id
+        Insert status
+        Insert name
+        Insert createdAt
+        Insert updatedAt
+        Insert userDidsId
+`POST` /reminder/add add reminder
+    Parameters
+
+        Insert id
+        Insert status
+        Insert createdAt
+        Insert updatedAt
+        Insert userDidsId
+`PUT` /contact/edit/{id} edit contact
+    Parameters
+
+        Insert id
+`POST` /contacts-group/add add a group
+    Parameters
+
+        Insert contactsCount
+        Insert id
+`PUT` /contacts-group/edit/{id} edit a group
+    Parameters
+
+        Insert contactsCount
+        Insert id
+`PUT` /did/conversation/message/edit/{id} edit conversation message
+    Parameters
+
+        Insert id
+`PUT` /did/conversation/message/edit/{id} edit conversation message
+    Parameters
+
+        Insert id
+`POST` /drip-campaigns/message/add add new Drip Message
+    Parameters
+
+        Insert id
+        Insert createdAt
+        Insert updatedAt
+`PUT` /drip-campaigns/message/edit/{id} update Drip Message
+    Parameters
+
+        Insert id
+        Insert createdAt
+        Insert updatedAt
+`POST` /drip-campaigns/message/delete Delete drip campaign message
+    Parameters
+
+        Insert messageTypeId
+        Insert fileId
+        Insert subject
+        Insert message
+        Insert time
+        Insert minute
+        Insert hour
+        Insert dayAfterJoining
+        Insert createdAt
+        Insert updatedAt
+`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
+    Return Type
+
+        Insert entities.fileId
+
+`GET` /keyword/settings/auto-reply/view/{id} get keyword autoreply settings
+    Return Type
+
+        Insert id
+`PUT` /keyword/settings/auto-reply/edit/{id} edit keyword autoreply settings
+    Parameters
+
+        Insert id
+# this is from `GET` /keyword/settings/auto-reply/view/{id}
+        Insert fileName
+`PUT` /keyword/settings/connect-to-groups/edit/{id} edit keyword connect to groups settings
+    Parameters
+
+        Insert id
+`GET` /keyword/settings/double-opt-in-confirmation/view/{id} view keyword settings for double opt in confirmation
+    Return Type
+
+        Insert id
+`PUT` /keyword/settings/double-opt-in-confirmation/edit/{id} Edit keyword settings for double opt in confirmation
+    Parameters
+
+        Insert id
+`GET` /keyword/settings/forward-opt-ins-via-email/view/{id} view keyword forward opt ins via email settings
+    Return Type
+
+        Insert id
+`PUT` /keyword/settings/forward-opt-ins-via-email/edit/{id} edit keyword forward opt ins via email settings
+    Parameters
+
+        Insert id
+`GET` /keyword/settings/alternate-reply/view/{id} view keyword settings for alternate reply
+    Return Type
+
+        Insert id
+`PUT` /keyword/settings/alternate-reply/edit/{id} edit keyword settings for alternate reply
+    Parameters
+
+        Insert id
+# this is from `GET` /keyword/settings/alternate-reply/view/{id}
+        Insert fileName
+`PUT` /keyword/settings/send-from-phone/edit/{id} edit keyword send from phone settings
+    Parameters
+
+        Insert id
+`GET` /keyword/settings/send-from-phone/view/{id} view keyword send from phone settings
+    Return Type
+
+        Insert groups.contactsCount
+        Insert groups.note
+`PUT` /keyword/settings/api-for-replies/edit/{id} edit keyword api for replies settings
+    Parameters
+
+        Insert id
+`GET` /keyword/settings/api-for-replies/view/{id} view keyword api for replies settings
+    Return Type
+
+        Insert id
+`POST` /keyword/subkeyword/add Add subkeyword
+    Return Type
+
+        Insert id
+`GET` /keyword/subkeyword/settings/alternate-reply/view/{id} View c settings for alternate reply
+    Return Type
+
+        Insert id
+`PUT` /keyword/subkeyword/settings/alternate-reply/edit/{id} Edit subkeyword settings for alternate reply
+    Parameters
+
+        Insert id
+`GET` /keyword/subkeyword/settings/auto-reply/view/{id} View subkeyword settings for auto reply
+    Return Type
+
+        Insert id
+`PUT` /keyword/subkeyword/settings/auto-reply/edit/{id} Edit subkeyword settings for auto reply
+    Parameters
+
+        Insert id
+`GET` /keyword/subkeyword/settings/connect-to-groups/view/{id} View subkeyword connect to groups settings
+    Return Type
+
+        Insert groups.contactsCount
+        Insert groups.note
+`PUT` /keyword/subkeyword/settings/connect-to-groups/edit/{id} Connect subkeyword to groups
+    Parameters
+
+        Insert id
+`PUT` /keyword/credit-type/edit/{id} Edit keyword credit type
+    Parameters
+
+        Insert id
+`GET` /keyword/settings/age-verification/view/{id} View keyword settings for age verification
+    Return Type
+
+        Insert id
+`PUT` /keyword/settings/age-verification/edit/{id} Edit keyword settings for age verification
+    Parameters
+
+        Insert id
+
 # create jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
 `POST` /billing/buy-credits buy credits with existing credit card
      Parameters
