@@ -195,3 +195,24 @@
     Return Type
 
         Insert id
+
+`GET` /dictionary/timezone/view-list TimeZones list
+    Return Type
+
+        Modify entities.offset
+
+`GET` /inbox/message/view/{id} view inbox message by id
+    Return Type
+
+        Modify contactId
+        Modify folderId
+
+`POST` /inbox/folder/add add inbox folder
+    Parameters
+
+        Insert id
+
+`PUT` /inbox/folder/edit/{id} edit inbox folder
+    Parameters
+
+        Insert id
