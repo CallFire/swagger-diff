@@ -149,6 +149,8 @@ public class CLI {
                 endpoint.getChangedOperations().remove(toIgnore.method);
             }
         }
+        // clean empty changepoints
+        diff.getChangedEndpoints().removeIf(endpoint -> endpoint.getChangedOperations().isEmpty() && endpoint.getMissingOperations().isEmpty() && endpoint.getNewOperations().isEmpty());
     }
 
     private int countParameters(List<ChangedEndpoint> changedEndpoints) {
