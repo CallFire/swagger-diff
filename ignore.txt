@@ -180,6 +180,18 @@
 
         Insert contactsCount
         Insert id
+`GET` /contact/report/keyword/view-list/{id} get contacts
+    Return Type
+
+        Insert total
+`GET` /contact/report/message/view-list/{id} get contacts
+    Return Type
+
+        Insert total
+`GET` /contact/report/voice/view-list/{id} get contacts
+    Return Type
+
+        Insert total
 `PUT` /did/conversation/message/edit/{id} edit conversation message
     Parameters
 
