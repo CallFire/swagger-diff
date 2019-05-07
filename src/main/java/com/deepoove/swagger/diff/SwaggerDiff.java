@@ -123,6 +123,12 @@ public class SwaggerDiff {
                 logger.info("removing path: " + path);
                 specSwagger.getPaths().remove(path);
             }
+            if (path.startsWith("/{brand}/")) {
+                String newPath = path.replaceFirst("/\\{brand}/", "/");
+                Path value = specSwagger.getPaths().remove(path);
+                specSwagger.getPaths().put(newPath, value);
+                logger.info("Path: " + path + " was replaced by: " + newPath);
+            }
         }
     }
 
