@@ -1,103 +1,12 @@
 #### ----------------
 #### BELOW ARE FIXES MUTED, AND should be reviewed soon, don't add without a jira to ez
 #### ----------------
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /billing/buy-credits buy credits with existing credit card
-     Parameters
-
-         Modify creditCardId
-         Delete creditCard.stateId
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /credit-card/add add new Credit Card
-    Parameters
-
-        Insert saveAsNew
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-20622
+`GET` /billing/plan/view-list get plans
     Return Type
 
-        Insert id
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /contact/add add new Contact
-    Parameters
-
-        Modify phoneNumber //Phone number
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /did/local/purchase-new-card Buy local did with new credit card
-    Parameters
-
-        Modify creditCard.stateId
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
-    Return Type
-
-        Delete entities.messageType
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /keyword/purchase-new-card Buy keyword did with new credit card
-    Parameters
-
-        Modify creditCard.stateId
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`GET` /reminder/view-list view list of reminders
-    Return Type
-
-        Insert total
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /reminder/contact/upload/process starts contacts import
-    Parameters
-
-        Insert fieldsOrder.column
-        Insert fieldsOrder.field
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`GET` /layout/main-menu retrieve main menu structure
-    Return Type
-
-        Insert isFeedbackEnabled
-        Insert messaging
-        Insert children.children
-        Insert children.isFeedbackEnabled
-        Insert children.messaging
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`POST` /guided-tour-logs post Guided Tour action
-    Parameters
-
-        Insert action
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19904
-`POST` /poster/add add poster
-    Parameters
-
-        Insert data
-        Delete brand
-        Delete template
-        Delete keyword
-        Delete code
-        Delete incentive
-        Delete bgColor
-        Delete textColor
-        Delete subColor
-        Delete bgImage
-        Delete imageFullWidth
-        Delete imageWidth
-        Delete imageFullHeight
-        Delete displacement
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`GET` /permissions/{groupName} get acl permissions of current user for requested pages group
-    Return Type
-
-        Delete notifyLowCredit //example ACL identifier
-        Delete autoBuyCredits //example ACL identifier
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`GET` /sending/message/view-list Outbox list
-    Return Type
-
-        Insert hasNext
-
+        Insert entities.priceTtlDid
+        Insert entities.priceTtlDidInitial
 # created jira for EZ team https://jira.kernelfire.com/browse/EZ-19920
 `GET` /sending/recurring-message/view/{id} recurring message get by id
     Return Type
@@ -114,24 +23,12 @@
         Insert file.userId
         Delete phoneNumbers
 
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
+# swagger Examples issue
 `GET` /sending/report/view/{id} get message report by id
     Return Type
 
         Delete link.detailed.4243798239
 
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`GET` /sending/report/view-list Sending report list
-    Return Type
-
-        Insert hasNext
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19852
-`GET` /toggle/view-list get toggles links
-    Return Type
-
-        Delete spa_chat
-        Delete postpone-account-verification
 #### ----------------
 #### OTHER ENDPOINTS ON PERMANENT BASIS
 #### ----------------
