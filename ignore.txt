@@ -7,21 +7,83 @@
 
         Insert entities.priceTtlDid
         Insert entities.priceTtlDidInitial
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-19920
+
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21213
+`GET` /sending/recipient/autocomplete recipient autocomplete
+    Return Type
+
+        Insert contacts.optOut
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21126
+`GET` /sending/message/view/{id} message get by id
+    Return Type
+
+        Delete recipients
+        Delete newTemplateName
+
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21228
+`GET` /integration/view-list get integrations
+    Return Type
+
+        Insert entities.syncResult.date
+        Insert entities.syncResult.stats
+        Insert entities.syncResult.success
+        Delete entities.syncResult.Successgit
+        Delete entities.syncResult.Date
+        Delete entities.syncResult.Stats
+
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21213 https://jira.kernelfire.com/browse/EZ-21126
 `GET` /sending/recurring-message/view/{id} recurring message get by id
     Return Type
 
-        Insert code
-        Insert contacts
-        Insert newTemplateName
-        Insert recipients
-        Insert sentOn
-        Insert status
         Insert groups.contactsCount
         Insert groups.note
-        Insert file.uploadDate
-        Insert file.userId
-        Delete phoneNumbers
+        Insert contacts.id
+        Insert file.thumbnail
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21200
+`GET` /user/current-package get a package
+    Return Type
+
+        Insert billingSchemaId
+        Delete billilngSchemaId
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21212
+`GET` /contact/view-list get contacts
+    Return Type
+
+        Insert entities.optOut
+        Delete entities.optout
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21212
+`GET` /contact/view/{id} get contact
+    Return Type
+
+        Insert optOut
+        Delete optout
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21212
+`GET` /sending/message/view/{id} message get by id
+    Return Type
+
+        Insert contacts.optout
+        Delete contacts.optOut
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21212
+`GET` /sending/recurring-message/view/{id} recurring message get by id
+    Return Type
+
+        Insert contacts.optout
+        Delete contacts.optOut
+
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21202
+`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
+    Return Type
+
+        Delete entities.file.userId
+        Delete entities.file.uploadDate
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21126 https://jira.kernelfire.com/browse/EZ-21213
+ `GET` /sending/recurring-message/view/{id} recurring message get by id
+     Return Type
+
+         Insert groups.contactsCount
+         Insert groups.note
+         Insert contacts.id
+         Insert file.thumbnail
 
 # swagger Examples issue
 `GET` /sending/report/view/{id} get message report by id
@@ -32,6 +94,19 @@
 #### ----------------
 #### OTHER ENDPOINTS ON PERMANENT BASIS
 #### ----------------
+
+`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
+    Return Type
+
+        Insert entities.file.thumbnail
+`GET` /sending/message/view/{id} message get by id
+    Return Type
+
+        Insert file.thumbnail
+`GET` /sending/recurring-message/view-list list recurring messages
+    Return Type
+
+        Insert entities.file.thumbnail
 
 `GET` /reminder/view/{id} view reminder
     Return Type
