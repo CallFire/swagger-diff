@@ -128,6 +128,7 @@ public class CLI {
                     && isEmpty(param.getChanged())
                     && !param.isChangeRequired());
             operation.getMissingParameters().removeIf(parameter -> toIgnore.parameters.remove(parameter.getName()));
+            operation.getAddParameters().removeIf(parameter -> toIgnore.parameters.remove(parameter.getName()));
 
             operation.getAddProps().removeIf(prop -> toIgnore.response.remove(prop.getEl()));
             operation.getMissingProps().removeIf(prop -> toIgnore.response.remove(prop.getEl()));
