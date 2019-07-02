@@ -1,24 +1,32 @@
 #### ----------------
 #### BELOW ARE FIXES MUTED, AND should be reviewed soon, don't add without a jira to ez
 #### ----------------
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-20622
-`GET` /billing/plan/view-list get plans
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-22148
+`GET` /report/keyword/activity get data for keyword activity grid
+    Parameters
+
+        Add page //page number
+        Add pageSize //page size
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-22148
+`GET` /report/message/activity get data for message activity grid
+    Parameters
+
+        Add page //page number
+        Add pageSize //page size
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21839
+`PUT` /credit-card/edit/{id} edit credit card
+    Parameters
+
+        Insert isDefault
+
+# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21833
+`POST` /voice/message/preview Preview/validate voice message
     Return Type
 
-        Insert entities.priceTtlDid
-        Insert entities.priceTtlDidInitial
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21213
-`GET` /sending/recipient/autocomplete recipient autocomplete
-    Return Type
-
-        Insert contacts.optOut
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21126
-`GET` /sending/message/view/{id} message get by id
-    Return Type
-
-        Delete recipients
-        Delete newTemplateName
+        Delete groups.id
+        Delete groups.contactsCount
+        Delete groups.name
+        Delete groups.note
 
 # created jira for EZ team https://jira.kernelfire.com/browse/EZ-21228
 `GET` /integration/view-list get integrations
@@ -27,63 +35,19 @@
         Insert entities.syncResult.date
         Insert entities.syncResult.stats
         Insert entities.syncResult.success
-        Delete entities.syncResult.Successgit
+        Delete entities.syncResult.Success
         Delete entities.syncResult.Date
         Delete entities.syncResult.Stats
 
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21213 https://jira.kernelfire.com/browse/EZ-21126
-`GET` /sending/recurring-message/view/{id} recurring message get by id
-    Return Type
-
-        Insert groups.contactsCount
-        Insert groups.note
-        Insert contacts.id
-        Insert file.thumbnail
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21200
-`GET` /user/current-package get a package
-    Return Type
-
-        Insert billingSchemaId
-        Delete billilngSchemaId
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21212
-`GET` /contact/view-list get contacts
-    Return Type
-
-        Insert entities.optOut
-        Delete entities.optout
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21212
-`GET` /contact/view/{id} get contact
-    Return Type
-
-        Insert optOut
-        Delete optout
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21212
-`GET` /sending/message/view/{id} message get by id
-    Return Type
-
-        Insert contacts.optout
-        Delete contacts.optOut
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21212
-`GET` /sending/recurring-message/view/{id} recurring message get by id
-    Return Type
-
-        Insert contacts.optout
-        Delete contacts.optOut
-
 # created jira for EZ team https://jira.kernelfire.com/browse/EZ-21202
+# need to fix Nova mapping also after the jira's completion
 `GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
     Return Type
 
+        Insert entities.fileId
+        Delete entities.file
         Delete entities.file.userId
         Delete entities.file.uploadDate
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21126 https://jira.kernelfire.com/browse/EZ-21213
- `GET` /sending/recurring-message/view/{id} recurring message get by id
-     Return Type
-
-         Insert groups.contactsCount
-         Insert groups.note
-         Insert contacts.id
-         Insert file.thumbnail
 
 # swagger Examples issue
 `GET` /sending/report/view/{id} get message report by id
@@ -95,6 +59,22 @@
 #### OTHER ENDPOINTS ON PERMANENT BASIS
 #### ----------------
 
+`GET` /billing/plan/view-list get plans
+    Parameters
+
+        Add brand //Brand
+`GET` /dictionary/country/view-list get dictionary by name
+    Parameters
+
+        Add brand //Brand
+`GET` /layout/vwo retrieve VWO raw script
+    Parameters
+
+        Add brand //Brand
+`GET` /user/signup/widget/packages-map get a marketing packages map
+    Parameters
+
+        Add brand //Brand
 `GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
     Return Type
 
@@ -196,10 +176,6 @@
         Insert createdAt
         Insert updatedAt
         Insert file
-`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
-    Return Type
-
-        Insert entities.fileId
 
 `GET` /keyword/settings/auto-reply/view/{id} get keyword autoreply settings
     Return Type
@@ -386,6 +362,11 @@
 
         Insert entities.file.uploadDate
         Insert entities.file.userId
+
+`GET` /sending/recurring-message/view/{id} recurring message get by id
+    Return Type
+
+        Insert file.thumbnail
 
 `POST` /message-template/custom/add add new custom message template
     Parameters
