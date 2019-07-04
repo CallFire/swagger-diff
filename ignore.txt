@@ -19,15 +19,6 @@
 
         Insert isDefault
 
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21833
-`POST` /voice/message/preview Preview/validate voice message
-    Return Type
-
-        Delete groups.id
-        Delete groups.contactsCount
-        Delete groups.name
-        Delete groups.note
-
 # created jira for EZ team https://jira.kernelfire.com/browse/EZ-21228
 `GET` /integration/view-list get integrations
     Return Type
@@ -46,8 +37,6 @@
 
         Insert entities.fileId
         Delete entities.file
-        Delete entities.file.userId
-        Delete entities.file.uploadDate
 
 # swagger Examples issue
 `GET` /sending/report/view/{id} get message report by id
@@ -75,10 +64,7 @@
     Parameters
 
         Add brand //Brand
-`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
-    Return Type
 
-        Insert entities.file.thumbnail
 `GET` /sending/message/view/{id} message get by id
     Return Type
 
@@ -154,14 +140,12 @@
         Insert id
         Insert createdAt
         Insert updatedAt
-        Insert file
 `PUT` /drip-campaigns/message/edit/{id} update Drip Message
     Parameters
 
         Insert id
         Insert createdAt
         Insert updatedAt
-        Insert file
 `POST` /drip-campaigns/message/delete Delete drip campaign message
     Parameters
 
@@ -175,7 +159,6 @@
         Insert dayAfterJoining
         Insert createdAt
         Insert updatedAt
-        Insert file
 
 `GET` /keyword/settings/auto-reply/view/{id} get keyword autoreply settings
     Return Type
@@ -281,17 +264,6 @@
 
          Insert id
 
-`GET` /dictionary/timezone/view-list TimeZones list
-    Return Type
-
-        Modify entities.offset
-
-`GET` /inbox/message/view/{id} view inbox message by id
-    Return Type
-
-        Modify contactId
-        Modify folderId
-
 `POST` /inbox/folder/add add inbox folder
     Parameters
 
@@ -307,62 +279,6 @@
 
         Insert id
 
-`POST` /sending/message/preview message preview
-    Parameters
-
-        Delete id
-`POST` /sending/message/send message send
-    Parameters
-
-        Delete id
-
-`GET` /sending/recipient/autocomplete recipient autocomplete
-    Return Type
-
-        Insert contacts.blocked
-        Insert contacts.blockedAt
-        Insert contacts.createdAt
-        Insert contacts.custom1
-        Insert contacts.custom2
-        Insert contacts.custom3
-        Insert contacts.custom4
-        Insert contacts.custom5
-        Insert contacts.email
-        Insert contacts.etag
-        Insert contacts.groups
-        Insert contacts.note
-        Insert contacts.optout
-        Insert contacts.source
-        Insert contacts.updatedAt
-
-`GET` /sending/message/view/{id} message get by id
-    Return Type
-
-        Insert recurring
-        Insert file.uploadDate
-        Insert file.userId
-        Insert contacts.blocked
-        Insert contacts.blockedAt
-        Insert contacts.createdAt
-        Insert contacts.custom1
-        Insert contacts.custom2
-        Insert contacts.custom3
-        Insert contacts.custom4
-        Insert contacts.custom5
-        Insert contacts.email
-        Insert contacts.etag
-        Insert contacts.groups
-        Insert contacts.id
-        Insert contacts.note
-        Insert contacts.source
-        Insert contacts.updatedAt
-
-`GET` /sending/recurring-message/view-list list recurring messages
-    Return Type
-
-        Insert entities.file.uploadDate
-        Insert entities.file.userId
-
 `GET` /sending/recurring-message/view/{id} recurring message get by id
     Return Type
 
@@ -376,8 +292,3 @@
     Parameters
 
         Insert id
-
-`GET` /message-template/custom/view/{id} get custom message template
-    Return Type
-
-        Modify id
