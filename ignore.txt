@@ -30,14 +30,6 @@
         Delete entities.syncResult.Date
         Delete entities.syncResult.Stats
 
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21202
-# need to fix Nova mapping also after the jira's completion
-`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
-    Return Type
-
-        Insert entities.fileId
-        Delete entities.file
-
 # swagger Examples issue
 `GET` /sending/report/view/{id} get message report by id
     Return Type
