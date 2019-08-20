@@ -36,10 +36,50 @@
 
         Delete link.detailed.4243798239
 
+# https://jira.kernelfire.com/browse/EZ-22949
+`POST` /contact/import return list of contact upload headers
+    Return Type
+
+        Insert total
+# https://jira.kernelfire.com/browse/EZ-22949
+`POST` /reminder/contact/upload return list of contact upload headers
+    Return Type
+
+        Insert total
+# https://jira.kernelfire.com/browse/CF-22722
+`GET` /sending/recurring-message/view/{id} recurring message get by id
+    Return Type
+
+        Insert blocked
+`GET` /sending/recurring-message/view-list list recurring messages
+    Return Type
+
+        Insert entities.blocked
+# incorrectly fixed bug - should be removed!
+`GET` /inbox/message/view-list Get inbox messages
+    Return Type
+
+        Insert responseTime
+        Delete entities.responseTime
+#  https://jira.kernelfire.com/browse/EZ-23223
+`GET` /sending/recurring-message/view/{id} recurring message get by id
+    Return Type
+
+        Delete needMoreCredits
+        Delete suggestedCredits
+# https://jira.kernelfire.com/browse/EZ-23240
+`GET` /sending/recurring-message/view-list list recurring messages
+    Return Type
+
+        Insert entities.file.uploadDate
+        Insert entities.file.userId
 #### ----------------
 #### OTHER ENDPOINTS ON PERMANENT BASIS
 #### ----------------
+`POST` /credit-card/add add new Credit Card
+    Parameters
 
+        Insert saveAsNew
 `GET` /billing/plan/view-list get plans
     Parameters
 
@@ -126,18 +166,32 @@
     Parameters
 
         Insert id
+`GET` /did/conversation/view-list get conversations list
+    Return Type
+
+        Insert entities.contact.groups
 `POST` /drip-campaigns/message/add add new Drip Message
     Parameters
 
         Insert id
         Insert createdAt
         Insert updatedAt
+# not yet done by EZ - to be removed!!!!!!
+    Return Type
+
+        Insert id
+        Insert containsSuspiciousWords
 `PUT` /drip-campaigns/message/edit/{id} update Drip Message
     Parameters
 
         Insert id
         Insert createdAt
         Insert updatedAt
+# this should be fixed by EZ!!!! needs to be removed (https://github.com/EzTexting/app/pull/7014/files)
+    Return Type
+
+        Insert id
+        Insert containsSuspiciousWords
 `POST` /drip-campaigns/message/delete Delete drip campaign message
     Parameters
 
@@ -151,7 +205,11 @@
         Insert dayAfterJoining
         Insert createdAt
         Insert updatedAt
+`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
+    Return Type
 
+        Delete entities.id
+        Insert entities.file.thumbnail
 `GET` /keyword/settings/auto-reply/view/{id} get keyword autoreply settings
     Return Type
 
@@ -284,3 +342,15 @@
     Parameters
 
         Insert id
+`GET` /media-file/view-list Media Files Collection
+    Return Type
+
+        Insert entities.thumbnail
+`POST` /media-file/upload Upload media file
+    Return Type
+
+        Insert thumbnail
+`GET` /media-file/view/{id} get a media file
+    Return Type
+
+        Insert thumbnail
