@@ -309,10 +309,106 @@
 
         Insert id
 
-`PUT` /credit-card/edit/{id} edit credit card
-     Parameters
+#######################################################
+# The following credit card differences occurred because in NOVA we have only one CreditCard dto, but in EZ they have many - one per CRUD operation
+#######################################################
+`POST` /billing/buy-credits buy credits with existing credit card
+    Parameters
 
-         Insert id
+        Insert creditCard.id
+        Insert creditCard.isDefault
+        Modify creditCard.typeId
+
+`POST` /billing/plan/buy-new-card buy plan with new card
+    Parameters
+
+        Insert creditCard.id
+        Insert creditCard.isDefault
+        Modify creditCard.typeId
+
+`POST` /credit-card/add add new Credit Card
+    Parameters
+
+        Insert id
+        Insert isDefault
+        Modify typeId
+`PUT` /credit-card/edit/{id} edit credit card
+    Parameters
+
+        Insert id
+        Insert number
+        Insert saveAsNew
+        Insert securityCode
+        Insert typeId
+
+`POST` /did/local/purchase-new-card Buy local did with new credit card
+    Parameters
+
+        Insert creditCard.id
+        Insert creditCard.isDefault
+        Modify creditCard.typeId
+
+`POST` /keyword/purchase-new-card Buy keyword did with new credit card
+    Parameters
+
+        Insert creditCard.id
+        Insert creditCard.isDefault
+        Modify creditCard.typeId
+#######################################################
+
+# https://jira.kernelfire.com/browse/EZ-23921
+`GET` /did/conversation/message/view-list get conversation messages
+    Return Type
+
+        Delete entities.updatedAt
+
+# https://jira.kernelfire.com/browse/EZ-23921
+`GET` /did/conversation/view-list get conversations list
+    Return Type
+
+        Delete entities.updatedAt
+
+# RecurringMessageViewResponse is a child of SendingMessageResponse so should be
+`GET` /sending/message/view/{id} message get by id
+    Return Type
+
+        Delete sendToNewRecipients
+        Delete credits
+
+# https://jira.kernelfire.com/browse/EZ-21228
+`GET` /integration/constantcontact/view Get integration
+    Return Type
+
+        Insert syncResult.date
+        Insert syncResult.stats
+        Insert syncResult.success
+        Delete syncResult.Success
+        Delete syncResult.Date
+        Delete syncResult.Stats
+
+# we don't verify on suspicious words when sending tour
+`POST` /sending/message/tour/send send message via guided tour
+    Return Type
+
+        Insert containsSuspiciousWords
+
+# this Open Resource endpoint should contain brand
+`GET` /toggle/view-list get toggles links
+    Parameters
+
+        Add brand //Brand
+
+# https://jira.kernelfire.com/browse/EZ-23584
+`GET` /user/private-label get private label info
+    Return Type
+
+        Insert antiSpamPolicyUrl
+        Insert applicationLogoPath
+        Insert copyrightText
+        Insert facebookAppName
+        Insert footerCustomText
+        Insert servicePolicyUrl
+        Insert termsReference
 
 `POST` /inbox/folder/add add inbox folder
     Parameters
