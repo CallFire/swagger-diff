@@ -410,6 +410,15 @@
         Insert servicePolicyUrl
         Insert termsReference
 
+# Those fields are not applicable for recurring messages because we don't know how much credit they are supposed to spend
+# sendToNewRecipients also not applicable but we have it in SendingMessageResponse parent DTO class
+`GET` /sending/recurring-message/view/{id} recurring message get by id
+    Return Type
+
+        Insert credits
+        Insert sendToNewRecipients
+
+
 `POST` /inbox/folder/add add inbox folder
     Parameters
 
