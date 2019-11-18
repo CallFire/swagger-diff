@@ -1,40 +1,54 @@
 #### ----------------
 #### BELOW ARE FIXES MUTED, AND should be reviewed soon, don't add without a jira to ez
 #### ----------------
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-22148
-`GET` /report/keyword/activity get data for keyword activity grid
-    Parameters
 
-        Add page //page number
-        Add pageSize //page size
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-22148
-`GET` /report/message/activity get data for message activity grid
-    Parameters
-
-        Add page //page number
-        Add pageSize //page size
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21839
-`PUT` /credit-card/edit/{id} edit credit card
-    Parameters
-
-        Insert isDefault
-
-# created jira for EZ team https://jira.kernelfire.com/browse/EZ-21228
-`GET` /integration/view-list get integrations
+### both are: https://jira.kernelfire.com/browse/EZ-25099
+`GET` /private-label/view PL options
     Return Type
-
-        Insert entities.syncResult.date
-        Insert entities.syncResult.stats
-        Insert entities.syncResult.success
-        Delete entities.syncResult.Success
-        Delete entities.syncResult.Date
-        Delete entities.syncResult.Stats
-
-# swagger Examples issue
-`GET` /sending/report/view/{id} get message report by id
+        Insert termsURl
+`GET` /user/private-label get private label info
     Return Type
+        Insert termsUrl
 
-        Delete link.detailed.4243798239
+# ALL BELOW SHOULD BE FIXED IN HERE: https://jira.kernelfire.com/browse/EZ-25100 (scroll down to END OF)
+`POST` /billing/buy-credits buy credits with existing credit card
+    Return Type
+        Modify amount
+`POST` /billing/invoice/pay pay invoice
+    Return Type
+        Modify amount
+`POST` /billing/plan/buy-existing-card buy plan with existing credit card
+    Return Type
+        Modify amount
+`POST` /billing/plan/buy-new-card buy plan with new card
+    Return Type
+        Modify amount
+`POST` /did/local/purchase-existing-card Buy local did with existing credit card
+    Return Type
+        Modify amount
+`POST` /did/local/purchase-new-card Buy local did with new credit card
+    Return Type
+        Modify amount
+`GET` /user get user
+    Return Type
+        Modify id
+`GET` /user/info get user info
+    Return Type
+        Delete noKeywordStopInfo
+        Modify id
+`GET` /voice/file/view-list Voice files collection
+    Return Type
+        Modify entities.userId
+`POST` /voice/file/record Record voice file
+    Return Type
+        Modify userId
+`POST` /voice/file/upload Upload voice file
+    Return Type
+        Modify userId
+`GET` /voice/file/view/{id} Get a voice file
+    Return Type
+        Modify userId
+########################## END OF https://jira.kernelfire.com/browse/EZ-25100
 
 # https://jira.kernelfire.com/browse/EZ-22949
 `POST` /contact/import return list of contact upload headers
@@ -46,7 +60,12 @@
     Return Type
 
         Insert total
-# https://jira.kernelfire.com/browse/CF-22722
+#### ----------------
+#### OTHER ENDPOINTS ON PERMANENT BASIS
+#### ----------------
+`GET` /web-forms Web forms list
+    Return Type
+        Insert total
 `GET` /sending/recurring-message/view/{id} recurring message get by id
     Return Type
 
@@ -55,27 +74,9 @@
     Return Type
 
         Insert entities.blocked
-# incorrectly fixed bug - should be removed!
-`GET` /inbox/message/view-list Get inbox messages
+`GET` /outbox/message/view-list Outbox data for threded conversation
     Return Type
-
-        Insert responseTime
-        Delete entities.responseTime
-#  https://jira.kernelfire.com/browse/EZ-23223
-`GET` /sending/recurring-message/view/{id} recurring message get by id
-    Return Type
-
-        Delete needMoreCredits
-        Delete suggestedCredits
-# https://jira.kernelfire.com/browse/EZ-23240
-`GET` /sending/recurring-message/view-list list recurring messages
-    Return Type
-
-        Insert entities.file.uploadDate
-        Insert entities.file.userId
-#### ----------------
-#### OTHER ENDPOINTS ON PERMANENT BASIS
-#### ----------------
+        Insert total
 `POST` /credit-card/add add new Credit Card
     Parameters
 
@@ -84,11 +85,11 @@
     Parameters
 
         Add brand //Brand
-`GET` /dictionary/country/view-list get dictionary by name
+`GET` /private-label/view PL options
     Parameters
 
         Add brand //Brand
-`GET` /layout/vwo retrieve VWO raw script
+`GET` /dictionary/country/view-list get dictionary by name
     Parameters
 
         Add brand //Brand
@@ -172,31 +173,19 @@
         Insert entities.contact.groups
 `POST` /drip-campaigns/message/add add new Drip Message
     Parameters
-
         Insert id
         Insert createdAt
         Insert updatedAt
-# not yet done by EZ - to be removed!!!!!!
-    Return Type
-
-        Insert id
-        Insert containsSuspiciousWords
 `PUT` /drip-campaigns/message/edit/{id} update Drip Message
     Parameters
 
         Insert id
         Insert createdAt
         Insert updatedAt
-# this should be fixed by EZ!!!! needs to be removed (https://github.com/EzTexting/app/pull/7014/files)
-    Return Type
-
-        Insert id
-        Insert containsSuspiciousWords
 `POST` /drip-campaigns/message/delete Delete drip campaign message
     Parameters
 
         Insert messageTypeId
-        Insert fileId
         Insert subject
         Insert message
         Insert time
@@ -317,21 +306,18 @@
 
         Insert creditCard.id
         Insert creditCard.isDefault
-        Modify creditCard.typeId
 
 `POST` /billing/plan/buy-new-card buy plan with new card
     Parameters
 
         Insert creditCard.id
         Insert creditCard.isDefault
-        Modify creditCard.typeId
 
 `POST` /credit-card/add add new Credit Card
     Parameters
 
         Insert id
         Insert isDefault
-        Modify typeId
 `PUT` /credit-card/edit/{id} edit credit card
     Parameters
 
@@ -346,46 +332,13 @@
 
         Insert creditCard.id
         Insert creditCard.isDefault
-        Modify creditCard.typeId
 
 `POST` /keyword/purchase-new-card Buy keyword did with new credit card
     Parameters
 
         Insert creditCard.id
         Insert creditCard.isDefault
-        Modify creditCard.typeId
 #######################################################
-
-# https://jira.kernelfire.com/browse/EZ-23921
-`GET` /did/conversation/message/view-list get conversation messages
-    Return Type
-
-        Delete entities.updatedAt
-
-# https://jira.kernelfire.com/browse/EZ-23921
-`GET` /did/conversation/view-list get conversations list
-    Return Type
-
-        Delete entities.updatedAt
-
-# RecurringMessageViewResponse is a child of SendingMessageResponse so should be
-`GET` /sending/message/view/{id} message get by id
-    Return Type
-
-        Delete sendToNewRecipients
-        Delete credits
-
-# https://jira.kernelfire.com/browse/EZ-21228
-`GET` /integration/constantcontact/view Get integration
-    Return Type
-
-        Insert syncResult.date
-        Insert syncResult.stats
-        Insert syncResult.success
-        Delete syncResult.Success
-        Delete syncResult.Date
-        Delete syncResult.Stats
-
 # we don't verify on suspicious words when sending tour
 `POST` /sending/message/tour/send send message via guided tour
     Return Type
@@ -397,18 +350,6 @@
     Parameters
 
         Add brand //Brand
-
-# https://jira.kernelfire.com/browse/EZ-23584
-`GET` /user/private-label get private label info
-    Return Type
-
-        Insert antiSpamPolicyUrl
-        Insert applicationLogoPath
-        Insert copyrightText
-        Insert facebookAppName
-        Insert footerCustomText
-        Insert servicePolicyUrl
-        Insert termsReference
 
 # Those fields are not applicable for recurring messages because we don't know how much credit they are supposed to spend
 # sendToNewRecipients also not applicable but we have it in SendingMessageResponse parent DTO class
@@ -459,3 +400,7 @@
     Return Type
 
         Insert thumbnail
+# swagger Examples issue
+`GET` /sending/report/view/{id} get message report by id
+    Return Type
+        Delete link.detailed.4243798239

@@ -1,0 +1,5 @@
+    @RequestMapping(value = METHOD_PATH_%s, method = %s)
+    @ApiOperation(value = "%s", notes = "%s")
+    public %s %s(%s) {
+        %s
+    }
