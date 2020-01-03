@@ -148,8 +148,8 @@ public class MarkdownRender implements Render {
 
 	private void writeResourceMethod(Endpoint endpoint, String resourceName, File resourceFile, File resourceTestFile,
 									 File novaClientFile) throws IOException {
-		File zendClientFile = new File("../Nova/nova-server/src/main/java/com/callfire/soa/nova/server/service/provider/zend/ZendClient.java");
-		File teslaClientFile = new File("../Nova/nova-server/src/main/java/com/callfire/soa/nova/server/service/provider/tesla/TeslaClient.java");
+		File zendClientFile = new File("../Nova/nova-bridge/src/main/java/com/callfire/soa/nova/bridge/provider/zend/ZendClient.java");
+		File teslaClientFile = new File("../Nova/nova-bridge/src/main/java/com/callfire/soa/nova/bridge/provider/tesla/TeslaClient.java");
 		String resourceContent = readFileToString(resourceFile);
 		int endOfClass = resourceContent.lastIndexOf("}");
 		Response response200 = endpoint.getOperation().getResponses().get("200");
