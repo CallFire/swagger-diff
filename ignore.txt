@@ -416,6 +416,16 @@
 
         Modify entities.userId
 
+`POST` /media-file/upload Upload media file
+    Return Type
+
+        Modify userId
+
+`GET` /media-file/view/{id} get a media file
+    Return Type
+
+        Modify userId
+
 `GET` /sending/message/view/{id} message get by id
     Return Type
 
