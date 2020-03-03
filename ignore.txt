@@ -404,3 +404,35 @@
 `GET` /sending/report/view/{id} get message report by id
     Return Type
         Delete link.detailed.4243798239
+
+# https://jira.kernelfire.com/browse/EZ-25235
+`GET` /drip-campaigns/message/view-list/{dripCampaignId} get user Drip Campaign Messages list
+    Return Type
+
+        Modify entities.file.userId
+
+`GET` /media-file/view-list Media Files Collection
+    Return Type
+
+        Modify entities.userId
+
+`GET` /sending/message/view/{id} message get by id
+    Return Type
+
+        Modify file.userId
+
+`GET` /sending/recurring-message/view/{id} recurring message get by id
+    Return Type
+
+        Modify file.userId
+
+`GET` /sending/recurring-message/view-list list recurring messages
+    Return Type
+
+        Modify entities.file.userId
+
+# https://jira.kernelfire.com/browse/EZ-25235
+`GET` /eloqua/campaign-configure/view Eloqua campaign configure view
+    Return Type
+
+        Modify userId
