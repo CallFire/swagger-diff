@@ -97,7 +97,10 @@
     Parameters
 
         Add brand //Brand
+`POST` /web-forms/subscribe Contact Subscription
+    Parameters
 
+        Add brand //Brand
 `GET` /sending/message/view/{id} message get by id
     Return Type
 
