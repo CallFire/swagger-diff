@@ -2,14 +2,6 @@
 #### BELOW ARE FIXES MUTED, AND should be reviewed soon, don't add without a jira to ez
 #### ----------------
 
-### both are: https://jira.kernelfire.com/browse/EZ-25099
-`GET` /private-label/view PL options
-    Return Type
-        Insert termsURl
-`GET` /user/private-label get private label info
-    Return Type
-        Insert termsUrl
-
 # ALL BELOW SHOULD BE FIXED IN HERE: https://jira.kernelfire.com/browse/EZ-25100 (scroll down to END OF)
 `POST` /billing/buy-credits buy credits with existing credit card
     Return Type
@@ -63,6 +55,23 @@
 #### ----------------
 #### OTHER ENDPOINTS ON PERMANENT BASIS
 #### ----------------
+`GET` /user get user
+    Return Type
+
+        Insert lastLogin
+`GET` /layout/notification/view-list get notifications
+    Return Type
+
+        Modify entities.id
+`PUT` /contact/edit/{id} edit contact
+    Parameters
+
+        Insert sourceId
+`POST` /sending/message/preview message preview
+    Parameters
+
+        Insert fromNumber
+        Insert sourceName
 `GET` /web-forms Web forms list
     Return Type
         Insert total
