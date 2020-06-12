@@ -458,3 +458,51 @@
     Return Type
 
         Modify userId
+
+`GET` /billing/plan/view-list get plans
+Parameters
+
+        Delete page //page number
+        Delete pageSize //page size
+        Delete orderBy //sorting by createdAt
+    Return Type
+
+        Delete currentPage
+        Delete total
+        Delete hasNext
+        Delete pageSize //amount of items on a page, one of 10, 20, 50, 100 or 200
+
+`GET` /dictionary/country/view-list get dictionary by name
+    Parameters
+
+        Delete page //page number
+        Delete pageSize //page size
+        Delete orderBy //sorting fields - Name
+    Return Type
+
+        Delete currentPage
+        Delete hasNext
+        Delete pageSize //amount of items on a page, one of 10, 20, 50, 100 or 200
+        Delete total
+
+`POST` /report/export request to export
+    Parameters
+
+        Insert filters.fullUrl
+
+`GET` /sending/report/view-list Sending report list
+    Parameters
+
+        Add filters[fullUrl][eq]
+
+`GET` /user get user
+    Return Type
+
+        Insert accountHolder
+        Insert timeZone
+
+`GET` /user/info get user info
+    Return Type
+
+        Insert agency
+        Insert tollFreeNumberRateLimit
